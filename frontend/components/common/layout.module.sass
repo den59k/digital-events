@@ -1,0 +1,44 @@
+.main
+	height: 100vh
+	width: 100vw
+	overflow: hidden
+	position: relative
+
+	.navLink
+		margin: 0 2px
+
+	.content, .navLink
+		background-color: white
+		border-radius: 12px
+		color: black
+
+	.contentWrapper
+		display: flex
+		position: relative
+		overflow: hidden
+		position: absolute
+		height: 100%
+		left: 0
+		background-color: #282725
+		transition: 0.4s 
+		border-radius: 12px
+	
+	.content
+		flex: 1 0 auto
+
+	.content
+		overflow-y: auto
+
+	.navLink
+		writing-mode: vertical-rl
+		text-orientation: mixed
+		width: 38px
+		line-height: 38px
+		padding-top: 30px
+		z-index: 1
+		transition: all 0.4s
+
+		&.active
+			background-color: black
+			color: white
+
