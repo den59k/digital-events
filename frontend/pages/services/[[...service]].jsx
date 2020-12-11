@@ -90,7 +90,10 @@ export async function getStaticProps(){
 
 	const services = await getServices()
 
-	return { props: { services } }
+	return { 
+		props: { services },
+		revalidate: 1
+	}
 }
 
 export async function getStaticPaths() {
