@@ -7,8 +7,7 @@ const indexes = {
 		token: { unique: true }
 	},
 	services: {
-		url: { unique: true },
-		'projects.url': { unique: true }
+		url: { unique: true }
 	}
 }
 
