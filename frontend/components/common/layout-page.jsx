@@ -9,7 +9,7 @@ export default function LayoutPage ({children}){
 	return (
 		<div className={styles.main}>
 			<header>
-				<img src="/db/images/logo.png" alt="Лого Digital Events"/>
+				<img src="/images/full-logo.png" alt="Лого Digital Events"/>
 				<Search className={cn(search && styles.opened)}/>
 			</header>
 			{children}
