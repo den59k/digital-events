@@ -61,5 +61,8 @@ export async function getStaticProps(){
 	if(pageData.video)
 		pageData.video.id = getId(pageData.video.video)
 
-	return { props: { pageData, services } }
+	return { 
+		props: { pageData, services },
+		revalidate: 1
+	}
 }

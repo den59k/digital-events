@@ -59,6 +59,7 @@ async function addCategory(db, _data){
 		await db.collection('services').insertOne(data)
 		return { success: "success" }
 	}catch(e){
+		console.log(e)
 		return { error: { url: "Данный URL уже существует"} }
 	}
 }

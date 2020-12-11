@@ -105,5 +105,5 @@ export async function getStaticPaths() {
 		paths.push({params: { service: [service.url] }})
 	}
 	
-	return { paths, fallback: false }
+	return { paths, fallback: true }
 }

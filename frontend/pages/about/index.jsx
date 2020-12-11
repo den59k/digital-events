@@ -25,5 +25,8 @@ import { getData } from 'libs/get-static-data'
 export async function getStaticProps(){
 	const pageData = await getData('about-page', 'ru')
 
-	return { props: { pageData } }
+	return { 
+		props: { pageData },
+		revalidate: 1
+	}
 }
