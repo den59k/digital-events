@@ -18,7 +18,7 @@ function toDotNotation (_data, startString=""){
 	const data = {}
 	const toDot = (obj, str='') => {
 		for(let key in obj)
-			if(typeof obj[key] === 'object')
+			if(typeof obj[key] === 'object' && !Array.isArray(obj[key]))
 				toDot(obj[key], str+key+'.')
 			else
 				data[str+key] = obj[key]

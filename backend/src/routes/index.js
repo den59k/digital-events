@@ -14,5 +14,10 @@ module.exports = function (app, db) {
 	blocksRoutes(app, db)
 	servicesRoutes(app, db)
 	imageRoutes(app, db)
+
+	app.use(function(err, _req, res) {
+		console.error(err.stack);
+		res.status(500).send('Something broke!');
+	});
 	// Тут, позже, будут и другие обработчики маршрутов 
 }

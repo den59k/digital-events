@@ -1,0 +1,29 @@
+.main
+	padding: 40px
+
+	header
+		display: flex 
+		justify-content: space-between
+		align-items: center
+		img
+			height: 3.2em
+		.search
+			opacity: 0
+			transform: translateY(-60px)
+			transition: 0.3s
+
+			&.opened
+				opacity: 1
+				transform: none
+
+			input
+				width: 600px
+				height: 2.8em
+				line-height: 2.8em
+				border: 1px solid black
+				padding-left: 1.5em
+				outline: none
+				border-radius: 1.4em
+
+				
+		

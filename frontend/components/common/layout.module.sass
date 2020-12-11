@@ -4,41 +4,115 @@
 	overflow: hidden
 	position: relative
 
-	.navLink
-		margin: 0 2px
+.navLink
+	margin: 0 2px
 
-	.content, .navLink
-		background-color: white
-		border-radius: 12px
-		color: black
+.content, .navLink
+	background-color: white
+	border-radius: 12px
+	color: black
 
-	.contentWrapper
-		display: flex
-		position: relative
-		overflow: hidden
-		position: absolute
-		height: 100%
-		left: 0
-		background-color: #282725
-		transition: 0.4s 
-		border-radius: 12px
+.contentWrapper
+	display: flex
+	position: relative
+	overflow: hidden
+	position: absolute
+	height: 100%
+	left: 0
+	background-color: #282725
+	transition: 0.4s 
+	border-radius: 12px
+
+.content
+	flex: 1 0 auto
+	overflow-y: auto
+	transition: transform 0.4s
+	position: relative
+	background-image: url(/images/noise.png)
+	animation: noise 1s steps(4) infinite
+	&.scrolled
+		transform: translateY(-400px)
+
+@keyframes noise
+	0%
+		background-position: 0 0
+	25%
+		background-position: 2px 40px
+	50%
+		background-position: 20px 20px
+	75%
+		background-position: -20px -5px
+	100%
+		background-position: 0 0
+
+.footer 
+	position: absolute
+	bottom: -400px
+	height: 400px
+	transition: bottom 0.5s
+	left: 38px
+	right: 0
+	padding: 40px
+	box-sizing: border-box
+	display: flex
+	justify-content: space-between
 	
-	.content
-		flex: 1 0 auto
+	&.scrolled
+		bottom: 0
 
-	.content
-		overflow-y: auto
+	.contacts
+		display: flex
+		flex-direction: column
 
-	.navLink
-		writing-mode: vertical-rl
-		text-orientation: mixed
-		width: 38px
-		line-height: 38px
-		padding-top: 30px
-		z-index: 1
-		transition: all 0.4s
+	.right
+		text-align: right
+		justify-content: space-between
 
+	.copyright
+		font-size: 18px
+		margin-top: auto
+		
+
+.navLink
+	writing-mode: vertical-rl
+	text-orientation: mixed
+	width: 38px
+	line-height: 38px
+	padding-top: 30px
+	z-index: 1
+	transition: all 0.4s
+
+	&.special
+		display: flex
+
+	a
+		margin-bottom: 70px
+
+	.arrow
+		padding: 0
+		margin-top: auto
+		padding-bottom: 40px
+		background: none
+		border: none
+		outline: none
+		opacity: 0
+		transition: opacity 0.3s
 		&.active
-			background-color: black
-			color: white
+			opacity: 1
+
+	.logo
+		width: 100%
+		height: 120px
+		margin: 0
+
+	img
+		max-width: 70%
+
+	&.active
+		background-color: black
+		color: white
+
+	&.special
+		background-color: white
+		color: black
 

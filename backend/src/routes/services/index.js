@@ -35,6 +35,11 @@ module.exports = function(app, db) {
 		res.json(category)
 	})
 
+	app.delete('/services/:category', async(req, res) => {
+		const resp = await deleteCategory(db, req.params.category)
+		res.json(resp)
+	})
+
 	projectRoutes(app, db)
 	servicesRoutes(app, db)
 }
@@ -68,4 +73,9 @@ async function updateCategory (db, category, _data){
 	}catch(e){
 		return { error: { url: "Произошла ошибка"} } 
 	}
+}
+
+async function deleteCategory (db, category){
+	const resp = await db.collection('services').deleteOne({url: category})
+	return { count: resp.deletedCount }
 }

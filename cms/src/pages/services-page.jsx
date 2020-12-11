@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useState } from 'react'
 import { lang as languages } from 'libs/constants'
 import useSWR, { mutate } from 'swr'
 import cn from 'classnames'
@@ -74,32 +74,43 @@ export default function ServicesPage (){
 	const [ project, selectProject ] = useState()
 
 	const addCategory = () => openModal("Добавление категории", addCategoryModal, addOrUpdateCategory(lang))
+	const deleteCategory = async (category) => {
+		const resp = await REST('/api/services/'+category, {}, 'DELETE')
+		if(resp.error) return console.log(resp)
+		mutate('/api/services')
+		closeModal()
+	}
+
+	const deleteProject = async (category, project) => {
+		const resp = await REST('/api/services/'+category+'/'+project, {}, 'DELETE')
+		if(resp.error) return console.log(resp)
+		mutate('/api/services')
+		closeModal()
+	}
 
 	const categoriesMenuItem = [
 		{ title: "Редактировать категорию", icon: <IoMdCreate/>, onClick: item => {
 			openModal("Изменение категории", addCategoryModal, addOrUpdateCategory(lang, item), getLang(item, lang))
 		}},
 		{ title: "Удалить категорию", icon: <IoMdTrash/>, onClick: (item) => {
-			openModalConfirm('Удалить категорию?', _lang(item.title), () => {
-				console.log(item)
-			})
-		}}
-	]
-
-	const projectsMenuItem = [
-		{ title: "Редактировать проект", icon: <IoMdCreate/>, onClick: item => {
-			openModal("Изменение проекта", addProjectModal, addOrUpdateProject(lang, category, item), getLang(item, lang))
-		}},
-		{ title: "Удалить проект", icon: <IoMdTrash/>, onClick: (item) => {
-			openModalConfirm('Удалить проект?', _lang(item.title), () => {
-				console.log(item)
-			})
+			openModalConfirm('Удалить категорию?', _lang(item.title), () => deleteCategory(item.url))
 		}}
 	]
 
 	const addProject = () => (category && category.url)?
 		openModal("Добавление проекта", addProjectModal, addOrUpdateProject(lang, category)):
 		null
+
+	const projectsMenuItem = [
+		{ title: "Редактировать проект", icon: <IoMdCreate/>, onClick: item => {
+			openModal("Изменение проекта", addProjectModal, addOrUpdateProject(lang, category, item), getLang(item, lang))
+		}},
+		{ title: "Удалить проект", icon: <IoMdTrash/>, onClick: (item) => {
+			openModalConfirm('Удалить категорию?', _lang(item.title), () => deleteProject(category.url, item.url))
+		}}
+	]
+
+	
 
 	const { data } = useSWR('/api/services', GET, { onSuccess: data => {
 		selectCategory(lastCategory => {
@@ -112,7 +123,6 @@ export default function ServicesPage (){
 				})
 
 				return newCategory
-				
 			})
 	}})
 	
@@ -170,7 +180,8 @@ function addOrUpdateService(lang, selectedCategory, selectedProject, index){
 
 const addServiceModal = {
 	title: { type: "text", label: "Название услуги", placeholder: "Услуга" },
-	text: { type: "textarea", rows: 5, placeholder: "Текст услуги" }
+	text: { type: "textarea", rows: 5, placeholder: "Текст услуги" },
+	gallery: { type: "gallery", label: "Галерея услуги" }
 }
 
 const galleryModal = {

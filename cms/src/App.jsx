@@ -7,11 +7,12 @@ import { IoIosHome, IoMdBook, IoIosApps, IoMdPerson } from 'react-icons/io'
 
 
 import MainPage from 'pages/main-page'
+import AboutPage from 'pages/about-page'
 import ServicesPage from 'pages/services-page'
 
 const menu = [
 	{ icon: <IoIosHome/>, title: "Главная страница", to: "/", component: <MainPage/> },
-	{ icon: <IoMdBook/>, title: "О нас", to: "/about", component: <MainPage/> },
+	{ icon: <IoMdBook/>, title: "О нас", to: "/about", component: <AboutPage/> },
 	{ icon: <IoIosApps/>, title: "Услуги", to: "/services", component: <ServicesPage/> },
 	{ icon: <IoMdPerson/>, title: "Контакты", to: "/contacts", component: <MainPage/> }
 ]

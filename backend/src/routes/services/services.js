@@ -11,7 +11,8 @@ const properties = {
 	lang: { type: "string" },
 	src: { type: "string" },
 	type: { type: "integer" },
-	id: { type: "string" }
+	id: { type: "string" },
+	gallery: { type: "array" }
 }
 
 const multiLanguage = [ "title", "text" ]

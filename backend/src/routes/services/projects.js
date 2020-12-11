@@ -25,6 +25,11 @@ module.exports = function(app, db) {
 		const resp = await updateProject(db, req.params.category, req.params.project, req.body)
 		res.json(resp)
 	})
+
+	app.delete('/services/:category/:project', async(req, res) => {
+		const resp = await deleteProject(db, req.params.category, req.params.project)
+		res.json(resp)
+	})
 }
 
 async function addProject(db, category, _data){
@@ -52,4 +57,10 @@ async function updateProject (db, category, project, _data){
 	}catch(e){
 		return { error: { url: "Произошла ошибка"} } 
 	}
+}
+
+
+async function deleteProject (db, category, project){
+	const resp = await db.collection('services').updateOne({ url: category }, { $pull: {projects: { url: project } } })
+	return { count: resp.modifiedCount }
 }

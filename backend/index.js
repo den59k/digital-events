@@ -7,7 +7,7 @@ const { base } = require('./src/libs/path')
 
 const dbName = 'digital-events'
 const app = express()
-const port = 3001
+const port = 3101
 
 async function init (){
   const client = await MongoClient.connect('mongodb://localhost:27017', { useUnifiedTopology: true })

@@ -5,7 +5,7 @@ const blocks = {
 	"short-description": {
 		title: "Краткое описание",
 		controls: {
-			text: { type: "textarea", rows: 2, label: "Текст блока" },
+			text: { type: "textarea", rows: 3, label: "Текст блока" },
 			showContacts: { type: "checkbox", label: "Показывать контакты", default: false }
 		}
 	},
@@ -18,7 +18,7 @@ const blocks = {
 	about: {
 		title: "Информация",
 		controls: {
-			text: { type: "textarea", rows: 2, label: "Текст блока" }
+			text: { type: "textarea", rows: 3, label: "Текст блока" }
 		}
 	}
 }

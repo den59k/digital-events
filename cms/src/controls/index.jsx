@@ -7,6 +7,8 @@ import Input from './input'
 import Segment from './segment'
 import TextArea from './textarea'
 import CheckBox from './checkbox'
+import Gallery from './gallery'
+import Image from './image'
 
 
 function getControl(name, control, form){
@@ -18,6 +20,12 @@ function getControl(name, control, form){
 	
 	if(control.type === 'checkbox')
 		return <CheckBox {...control} name={name} form={form}/>
+
+	if(control.type === 'gallery')
+		return <Gallery {...control} name={name} form={form}/>
+
+	if(control.type === 'image')
+		return <Image {...control} name={name} form={form}/>
 }
 
 ///Данный хук используется, когда нам нужно обозначить несколько полей, у которых также могут появляться ошибки
