@@ -19,7 +19,7 @@ export default function HomePage({services}) {
 		<LayoutPage>
 			<h1>Услуги</h1>
 			<ul className={styles.categories}>
-				{services.map((item, index) => (
+				{services && services.map((item, index) => (
 					<li key={index}>
 						<Link href={'/services/'+item.url}>
 							<a className={cn(categoryUrl === item.url && styles.active)}>{item.title.ru}</a>
