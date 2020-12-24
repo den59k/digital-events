@@ -18,6 +18,12 @@ export function num(count, one, two, five){
 	return count + " " + numeral(count, one, two, five)
 }
 
+export function getChatDate(date){
+	const dt = new Date(date)
+
+	return `${dt.getDay()}.${dt.getMonth()}.${dt.getFullYear()}. в ${dt.getHours}:${dt.getMinutes}`
+}
+
 export function _lang(item, lang){
 	if(typeof(item) === 'object')
 		return item[lang] || item.ru
