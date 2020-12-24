@@ -137,7 +137,7 @@ export default function Layout (props){
 						</>
 					):(
 						<div className={styles.content} style={{width: `calc(100vw - ${linkHeight*menu.length}px)`}}>
-							
+							{/* {lastChildren[index] } */}
 						</div>
 					)}
 				</div>
