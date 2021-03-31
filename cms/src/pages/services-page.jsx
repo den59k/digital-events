@@ -150,7 +150,6 @@ export default function ServicesPage (){
 						title="Проекты" 
 						onAdd={addProject} 
 						menuItems={projectsMenuItem} 
-						onSelect={selectProject}
 						selectedItem={project}
 						lang={lang}
 						keyItem="url"
