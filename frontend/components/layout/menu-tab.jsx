@@ -16,7 +16,7 @@ function MenuTab({ tab, active }){
 					<a className={styles.logo}><img src="/images/logo.png" alt="Логотип Digital-Events"/></a>
 				</Link>
 				
-				<span role="button" tabindex="0" className="a">Поиск</span>
+				<span role="button" tabIndex="0" className="a">Поиск</span>
 				<a target="_blank" href="/presentation.pdf" className="a">Презентация</a>
 
 				<button className={cn(styles.arrow, arrow && styles.active)}>

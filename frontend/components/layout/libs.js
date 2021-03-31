@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 
 export function getStyle (index, page, length, linkHeight){
 
@@ -13,3 +14,4 @@ export function getStyle (index, page, length, linkHeight){
 	if(index > page)
 		return {left: `calc(100vw - ${right+linkHeight}px)`, width: linkHeight+'px'};
 }
+

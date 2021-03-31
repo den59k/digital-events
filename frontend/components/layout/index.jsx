@@ -5,6 +5,7 @@ import { getStyle } from './libs'
 import styles from './layout.module.sass'
 import MenuTab from './menu-tab'
 import Head from './head'
+import CustomCursor from './custom-cursor'
 
 const menu = [
 	{ href: "/", title: "Главная", special: true },
@@ -24,7 +25,7 @@ function Layout({children}){
 	return (
 		<div className={styles.main}>
 			<Head title={menu[page].title}/>
-			
+			<CustomCursor/>
 			{menu.map((item, index) => (
 				<div key={item.href}  className={cn(styles.contentWrapper)}	style={getStyle(index, page, menu.length, linkHeight)}>
 					<MenuTab tab={item} active={index === page} />
