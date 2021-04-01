@@ -14,7 +14,7 @@ const menu = [
 	{ href: "/contacts", title: "Контакты" }
 ]
 
-const linkHeight = 40
+const linkHeight = 2
 
 function Layout({children}){
 
@@ -27,19 +27,20 @@ function Layout({children}){
 			<Head title={menu[page].title}/>
 			<CustomCursor/>
 			{menu.map((item, index) => (
-				<div key={item.href}  className={cn(styles.contentWrapper)}	style={getStyle(index, page, menu.length, linkHeight)}>
+				<div key={item.href}  className={cn(styles.contentWrapper, index===page && styles.active)}	style={getStyle(index, page, menu.length, linkHeight)}>
 					<MenuTab tab={item} active={index === page} />
 					{ index === page? (
-						<>
-							{children}
-						</>
+						<div className={styles.content}>
+							{ children }
+						</div>
 					):(
-						<div className={styles.content} style={{width: `calc(100vw - ${linkHeight*menu.length}px)`}}>
+						<div className={styles.content} style={{width: `calc(100vw - ${linkHeight*menu.length}em)`}}>
 							{/* {lastChildren[index] } */}
 						</div>
 					)}
 				</div>
 			))}
+			<button className={styles.mobileMenuButton}>Меню</button>
 		</div>
 	)
 }

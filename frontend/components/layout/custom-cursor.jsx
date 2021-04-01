@@ -7,7 +7,6 @@ function CustomCursor (){
 
 	useEffect(() => {
 		const cursorMove = (e) => {
-			console.log(cursorRef.current.style)
 			cursorRef.current.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`
 		}
 

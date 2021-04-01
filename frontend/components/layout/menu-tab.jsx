@@ -27,7 +27,7 @@ function MenuTab({ tab, active }){
 	
 	return (
 		<Link href={tab.href}>
-			<a className={cn(styles.navLink, active && styles.active)}>
+			<a className={cn(styles.navLink, "a", active && styles.active)}>
 				{tab.title}
 			</a>
 		</Link>

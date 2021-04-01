@@ -6,12 +6,12 @@ export function getStyle (index, page, length, linkHeight){
 	const left = index*linkHeight
 
 	if(index < page)
-		return { left: left+'px', width: linkHeight+'px' };
+		return { left: left+'em' };
 
 	if(index === page)
-		return { left: left+'px', width: `calc(100vw - ${right+left}px)` }
+		return { left: left+'em' }
 
 	if(index > page)
-		return {left: `calc(100vw - ${right+linkHeight}px)`, width: linkHeight+'px'};
+		return {left: `calc(100vw - ${right+linkHeight}em)` };
 }
 
