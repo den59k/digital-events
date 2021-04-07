@@ -1,0 +1,81 @@
+
+.content
+	flex: 1 1 80vw
+	min-width: 85vw
+	overflow-y: auto
+	overflow-x: hidden
+	transition: transform 0.4s
+	position: relative
+
+	@media(min-width: 500px)
+
+		scrollbar-color: #282725 #ffffff
+		scrollbar-width: thin
+
+		&::-webkit-scrollbar 
+			width: 6px
+			background: none
+			transform: translateX(-20px)
+
+
+		&::-webkit-scrollbar-thumb
+			background-color: white
+			border-radius: 8px
+
+	&.scrolled
+		transform: translateY(-400px)
+
+.noise
+	background-image: url(/images/noise.png)
+	animation: noise 0.8s steps(2) infinite
+
+	background-color: white
+	border-radius: 0.6em
+	color: black
+
+	padding: 1.5em 2em
+
+	@media(max-width: 400px)
+		padding: 6vw 6vw
+
+@keyframes noise
+	0%
+		background-position: 0 0
+	25%
+		background-position: 2px 40px
+	50%
+		background-position: 20px 20px
+	75%
+		background-position: -20px -5px
+	100%
+		background-position: 0 0
+
+.logo
+	width: 15em
+	@media(max-width: 400px)
+		width: 88vw
+
+.footer 
+
+	left: 38px
+	right: 0
+	padding: 40px
+	box-sizing: border-box
+	display: flex
+	justify-content: space-between
+	
+	&.scrolled
+		bottom: 0
+
+	.contacts
+		display: flex
+		flex-direction: column
+
+	.right
+		text-align: right
+		justify-content: space-between
+
+	.copyright
+		font-size: 18px
+		margin-top: auto
+		

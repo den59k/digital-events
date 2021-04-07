@@ -4,12 +4,13 @@ $lineHeight: 1.95em
 
 .main
 	height: 100vh
+	height: calc(var(--vh, 1vh) * 100)
 	width: 100vw
 	overflow: hidden
 	position: relative
 
 
-.content, .navLink, .mobileMenuButton
+.navLink, .mobileMenuButton
 	background-color: white
 	border-radius: 0.6em
 	color: black
@@ -23,7 +24,7 @@ $lineHeight: 1.95em
 	left: 0
 	background-color: #282725
 	transition: left 0.4s cubic-bezier(0.33, 1, 0.68, 1), width 0.4s cubic-bezier(0.33, 1, 0.68, 1)
-	border-radius: 12px
+
 	width: $lineHeight + 0.05em 
 
 	&.active
@@ -46,55 +47,6 @@ $lineHeight: 1.95em
 	@media(min-width: $mobile-width)
 		display: none
 
-.content
-	flex: 1 0 auto
-	overflow-y: auto
-	transition: transform 0.4s
-	position: relative
-	background-image: url(/images/noise.png)
-	animation: noise 0.8s steps(2) infinite
-	&.scrolled
-		transform: translateY(-400px)
-
-@keyframes noise
-	0%
-		background-position: 0 0
-	25%
-		background-position: 2px 40px
-	50%
-		background-position: 20px 20px
-	75%
-		background-position: -20px -5px
-	100%
-		background-position: 0 0
-
-.footer 
-	position: absolute
-	bottom: -400px
-	height: 400px
-	transition: bottom 0.5s
-	left: 38px
-	right: 0
-	padding: 40px
-	box-sizing: border-box
-	display: flex
-	justify-content: space-between
-	
-	&.scrolled
-		bottom: 0
-
-	.contacts
-		display: flex
-		flex-direction: column
-
-	.right
-		text-align: right
-		justify-content: space-between
-
-	.copyright
-		font-size: 18px
-		margin-top: auto
-		
 
 .navLink
 	writing-mode: vertical-rl
