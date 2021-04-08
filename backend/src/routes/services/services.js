@@ -22,12 +22,6 @@ const casesSchema = { properties }
 
 module.exports = function(app, db) {
 
-	app.get('/services', async (req, res) => {
-
-		const services = await getCategories(db)	
-		res.json(services)
-	})
-
 	app.post('/services/:category/:project', validate(postSchema), async (req, res) => {
 		const category = await addService(db, req.params.category, req.params.project, req.body)
 		res.json(category)
@@ -36,6 +30,11 @@ module.exports = function(app, db) {
 	app.put('/services/:category/:project/:id', validate(postSchema), async (req, res) => {
 		const category = await updateService(db, req.params.category, req.params.project, req.params.id, req.body)
 		res.json(category)
+	})
+
+	app.delete('/services/:category/:project/:id', async (req, res) => {
+		const resp = await deleteService(db, req.params.category, req.params.project, req.params.id)
+		res.json(resp)
 	})
 
 	app.post('/services/:category/:project/cases', validate(casesSchema), async(req, res) => {
@@ -47,6 +46,11 @@ module.exports = function(app, db) {
 
 	app.put('/services/:category/:project/cases/:id', validate(casesSchema), async(req, res) => {
 		const resp = await updateCase(db, req.params.category, req.params.project, req.params.id, req.body)
+		res.json(resp)
+	})
+
+	app.delete('/services/:category/:project/cases/:id', async(req, res) => {
+		const resp = await deleteCase(db, req.params.category, req.params.project, req.params.id)
 		res.json(resp)
 	})
 }
@@ -81,6 +85,25 @@ async function updateService (db, category, project, index, _data){
 	}
 }
 
+async function deleteService (db, category, project, index){
+	try{
+		await db.collection('services').updateOne(
+			{ url: category, "projects.url": project }, 
+			{ $unset: { [`projects.$.services.${index}`]: 1 }}
+		)
+
+		const resp = await db.collection('services').updateOne(
+			{ url: category, "projects.url": project }, 
+			{ $pull: { "projects.$.services": null } }
+		)
+
+		return { count: resp.modifiedCount }
+	}catch(e){
+		console.log(e)
+		return { error: { title: "Произошла ошибка"} }
+	}
+}
+
 async function addCase (db, category, project, _data){
 	const data = toMultiLanguage(_data, multiLanguage, properties)
 
@@ -107,6 +130,25 @@ async function updateCase(db, category, project, index, _data){
 		)
 
 		return data
+	}catch(e){
+		console.log(e)
+		return { error: { title: "Произошла ошибка"} }
+	}
+}
+
+async function deleteCase (db, category, project, index){
+	try{
+		await db.collection('services').updateOne(
+			{ url: category, "projects.url": project }, 
+			{ $unset: { [`projects.$.cases.${index}`]: 1 }}
+		)
+
+		const resp = await db.collection('services').updateOne(
+			{ url: category, "projects.url": project }, 
+			{ $pull: { "projects.$.cases": null } }
+		)
+
+		return { count: resp.modifiedCount }
 	}catch(e){
 		console.log(e)
 		return { error: { title: "Произошла ошибка"} }

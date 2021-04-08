@@ -10,13 +10,20 @@ export default function Categories ({services}){
 
 	const [ openedCategory, setOpenedCategory ] = useState(-1)
 
+	const openCategory = (index) => {
+		if(openedCategory === index)
+			setOpenedCategory(-1)
+		else
+			setOpenedCategory(index)
+	}
+
 	return (
 		<div className={styles.container}>
 			<h2>Мы разрабатываем</h2>
 			<ul className={cn(styles.services, "ml")}>
 				{services && services.map((item, index) => (
 					<li key={index}>
-						<button className="a" onClick={() => setOpenedCategory(index)}>{_lang(item.title)}</button>
+						<button className="a" onClick={() => openCategory(index)}>{_lang(item.title)}</button>
 							{openedCategory === index && item.projects && (
 							<div className={styles.linkList}>
 								{item.projects.map((project, index) => (

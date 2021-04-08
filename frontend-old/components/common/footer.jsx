@@ -11,7 +11,7 @@ export default function Footer ({className}){
 				Контакты
 				<a href={`mailto:`+contacts.email} className="a">{contacts.email}</a>
 				<a href={`tel:`+contacts.phone} className="a">{contacts.phoneFull}</a>
-				<div className={styles.copyright}>©2020 Digital Events</div>
+				<div className={styles.copyright}>©2021 Digital Events</div>
 			</div>
 
 			<div className={cn("medium-text", styles.contacts, styles.right)}>

@@ -5,7 +5,7 @@ import pageStyles from 'styles/page.module.sass'
 export default function ContactsPage({pageData}) {
 	return (
 		<PageLayout>
-			<h1>О нас</h1>
+			<h1 className="mt-0">О нас</h1>
 			<div className="medium-text ml">{pageData.first.text}</div>
 			{pageData.first.image && (<img className={pageStyles.image} src={pageData.first.image.src} alt="Digital Events"/>)}
 

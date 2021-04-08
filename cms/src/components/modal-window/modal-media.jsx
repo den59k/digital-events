@@ -12,7 +12,7 @@ const types = [
 ]
 
 
-export function ModalMedia({title, onSubmit, controls, defaultValues}){
+export function ModalMedia({title, onSubmit, controls, defaultValues, onDeleteMedia}){
 
 	const form = useForm({type: 0, ...defaultValues})
 	const fileRef = useRef()
@@ -80,14 +80,24 @@ export function ModalMedia({title, onSubmit, controls, defaultValues}){
 				)}
 			</div>
 
-			<div className="buttons">
+			<div className="buttons" style={{marginBottom: 0}}>
 				<button className="button" onClick={() => modal.close()}>Отмена</button>
 				<button className={cn("button-filled")} onClick={_onSubmit}>Добавить</button>
 			</div>
+			{onDeleteMedia && (
+				<button className="button red-text" onClick={onDeleteMedia} style={{marginBottom: '1em'}}>Удалить медиа</button>
+			)}
 		</ModalBase>
 	)
 }
 
-export function openModalMedia(title, controls, onSubmit, defaultValues){
-	modal.open(<ModalMedia title={title} onSubmit={onSubmit} controls={controls} className="confirm" defaultValues={defaultValues}/>)
+export function openModalMedia(title, controls, onSubmit, defaultValues, onDeleteMedia){
+	modal.open(<ModalMedia 
+		title={title} 
+		onSubmit={onSubmit} 
+		controls={controls} 
+		className="confirm" 
+		defaultValues={defaultValues}
+		onDeleteMedia={onDeleteMedia}
+	/>)
 }

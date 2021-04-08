@@ -150,6 +150,7 @@ export default function ServicesPage (){
 						title="Проекты" 
 						onAdd={addProject} 
 						menuItems={projectsMenuItem} 
+						onSelect={selectProject}
 						selectedItem={project}
 						lang={lang}
 						keyItem="url"
@@ -193,6 +194,13 @@ function ServiceContainer ({project, category, lang, cases}){
 		openModal("Добавление услуги", addServiceModal, addOrUpdateService(lang, category, project));
 	}
 
+	const deleteService = async (index) => {
+		const resp = await REST('/api/services/'+category.url+'/'+project.url+'/'+index, {}, 'DELETE')
+		if(resp.error) return console.log(resp)
+		mutate('/api/services')
+		closeModal()
+	}
+
 	return (
 		<div className="block-container" style={{flex: "1 1 auto"}}>
 			<div className="block-header">
@@ -202,7 +210,13 @@ function ServiceContainer ({project, category, lang, cases}){
 			<div className="list-container" style={{margin: "10px 0"}}>
 			{project.services && project.services.map((item, index) => (
 				<div className="list-item" key={index}>
-					<button onClick={() => openModal("Изменение услуги", addServiceModal, addOrUpdateService(lang, category, project, index), getLang(item, lang))}>
+					<button onClick={() => openModal(
+						"Изменение услуги", 
+						addServiceModal, 
+						addOrUpdateService(lang, category, project, index), 
+						getLang(item, lang),
+						() => deleteService(index)
+					)}>
 						<div className="title">{_lang(item.title, lang)}</div>
 						<div className="sub">{_lang(item.text, lang)}</div>
 					</button>
@@ -243,7 +257,7 @@ function getGalleryItemMap(onClick){
 
 function Gallery ({items, style, className, api, lang}){
 	
-	
+
 	const addPhoto = () => {
 		openModalMedia("Добавить медиа", galleryModal, async (values, form) => {
 			const resp = await REST(api, {...values, lang}, 'POST')
@@ -255,13 +269,22 @@ function Gallery ({items, style, className, api, lang}){
 
 	const onClick = (item, index) => {
 		if(item.id) item = { ...item, url: "https://www.youtube.com/watch?v="+item.id }
-		openModalMedia("Изменить медиа", galleryModal, async (values, form) => {
-			console.log(values)
+
+		const deleteMedia = async () => {
+			const resp = await REST(api+'/'+index, {}, 'DELETE')
+			if(resp.error) return console.log(resp)
+			mutate('/api/services')
+			closeModal()
+		}
+
+		const editMedia = async (values, form) => {
 			const resp = await REST(api+'/'+index, {...values, lang}, 'PUT')
 			if(resp.error) return console.log(resp)
 			mutate('/api/services')
 			closeModal()
-		}, getLang(item, lang));
+		}
+
+		openModalMedia("Изменить медиа", galleryModal, editMedia, getLang(item, lang), deleteMedia);
 	}
 
 

@@ -1,5 +1,5 @@
 .form
-	max-width: 740px
+	max-width: 750px
 
 .input
 	display: flex
@@ -10,7 +10,7 @@
 		border-top: 1px solid black
 	
 	label
-		font-size: 1.9em
+		font-size: 1.2em
 		line-height: 80px
 	
 	input
@@ -20,13 +20,22 @@
 		outline: none
 		text-align: right
 		flex: 1 1 auto
+		font-size: 0.8em
+
+	@media(max-width: 900px)
+		flex-direction: column
+
+		label
+			font-size: 1.4em
+			line-height: 1em
+			margin-top: 2em
+		
+		input
+			align-self: stretch	
+			font-size: 1em
 
 .buttons
 	margin-top: 50px
-
-	:global(.button)
-		color: red
-
 	button
 		background: none
 		border: 1px solid black
@@ -35,3 +44,4 @@
 		margin-right: 1.5em
 		border-radius: 1.1em
 		outline: none
+		font-size: 0.8em

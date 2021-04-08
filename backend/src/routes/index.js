@@ -15,7 +15,8 @@ module.exports = function (app, db) {
 	servicesRoutes(app, db)
 	imageRoutes(app, db)
 
-	app.use(function(err, _req, res) {
+	app.use(function(err, _req, res, _next) {
+		
 		console.error(err.stack);
 		res.status(500).send('Something broke!');
 	});

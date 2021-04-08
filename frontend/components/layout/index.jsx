@@ -27,7 +27,7 @@ if (process.browser) {
 	resize()
 }
 
-function Layout({children}){
+function Layout({children, contacts}){
 
 	const router = useRouter()
 	//page - это индекс текущей страницы
@@ -41,7 +41,7 @@ function Layout({children}){
 				<div key={item.href}  className={cn(styles.contentWrapper, index===page && styles.active)}	style={getStyle(index, page, menu.length, linkHeight)}>
 					<MenuTab tab={item} active={index === page} />
 					{ index === page? (
-						<Page key={index}>
+						<Page key={index} contacts={contacts}>
 						 { children }
 						</Page> 
 					):(

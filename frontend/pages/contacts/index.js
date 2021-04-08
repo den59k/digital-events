@@ -6,3 +6,16 @@ export default function ContactPage() {
 		</div>
 	)
 }
+
+
+import { getData } from 'server-side/get-static-data'
+
+export async function getStaticProps(){
+
+	const { contacts } = await getData('contacts-page', 'ru')
+
+	return { 
+		props: { contacts },
+		revalidate: 1
+	}
+}
