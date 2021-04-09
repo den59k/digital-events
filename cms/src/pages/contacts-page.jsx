@@ -7,6 +7,7 @@ const blocks = {
 		controls: {
 			email: { type: "text", label: "E-mail", placeholder: "E-mail" },
 			phone: { type: "text", label: "Номер телефона", placeholder: "Номер"  },
+			address: { type: "text", label: "Адрес", placeholder: "Введите адрес" },
 			instagram: { type: "text", label: "Instagram", placeholder: "Ссылка на страницу"  },
 			facebook: { type: "text", label: "Facebook", placeholder: "Ссылка на страницу"  },
 			youtube: { type: "text", label: "Youtube", placeholder: "Ссылка на страницу"  },

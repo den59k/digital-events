@@ -1,8 +1,10 @@
+import Contacts from 'components/page-components/contacts'
 
-export default function ContactPage() {
+export default function ContactPage({contacts}) {
 	return (
 		<div>
-			<h1>ContactPage</h1>
+			<h1 className="mt-0">Контакты</h1>
+			<Contacts contacts={contacts}/>
 		</div>
 	)
 }

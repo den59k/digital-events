@@ -1,8 +1,26 @@
+import { useRouter } from 'next/router'
 
-export default function ServicesPage() {
+import CategoryList from 'components/page-components/services/category-list'
+import Category from 'components/page-components/services/category'
+import Project from 'components/page-components/services/project'
+
+export default function ServicesPage({services}) {
+
+	const router = useRouter()
+	const { service } = router.query
+	
+	const categoryUrl = Array.isArray(service)?service[0]: ""
+	const projectUrl = Array.isArray(service)?service[1]: ""
+	
+	const category = categoryUrl? services.find(item => item.url === categoryUrl): null
+	const project = (projectUrl && category && category.projects)? category.projects.find(item => item.url === projectUrl): null
+
 	return (
 		<div>
-			<h1>ServicesPage</h1>
+			<h1 className="mt-0">Услуги</h1>
+			<CategoryList services={services} activeCategory={categoryUrl}/>
+			<Category category={category} activeProject={projectUrl} />
+			<Project project={project} />
 		</div>
 	)
 }

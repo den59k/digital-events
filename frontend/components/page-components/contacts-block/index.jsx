@@ -1,17 +1,12 @@
-import { useEffect, useState, useRef } from 'react'
+
 import styles from './contacts-block.module.sass'
 
 export default function ContactsBlock ({contacts}){
 
-	const [ heightSpacer, setHeightSpacer ] = useState(0)
-	const blockRef = useRef()
-
-
-
 	return (
 		<>
 			<div className={styles.spacer} ></div>
-			<div className={styles.block} ref={blockRef}>
+			<div className={styles.block}>
 
 					<div>Контакты</div>
 					<a href={`mailto:`+contacts.email} className="a">{contacts.email}</a>
