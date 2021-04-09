@@ -10,6 +10,7 @@
     "sharp": "^0.26.3"
   },
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "start": "node index.js"
   }
 }

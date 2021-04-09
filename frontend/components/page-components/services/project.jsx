@@ -9,7 +9,7 @@ export default function Project ({project}){
 
 	return (
 		<>
-			{ project.services.map((item, index) => <Service service={item} key={index}/> )}
+			{ project.services && project.services.map((item, index) => <Service service={item} key={index}/> )}
 			{ project.cases && (
 				<>
 					<h2>Реализованные проекты</h2>
