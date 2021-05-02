@@ -11,8 +11,8 @@ export default function ServicesPage({services}) {
 	
 	const categoryUrl = Array.isArray(service)?service[0]: ""
 	const projectUrl = Array.isArray(service)?service[1]: ""
-	
-	const category = categoryUrl? services.find(item => item.url === categoryUrl): null
+
+	const category = (services && categoryUrl)? services.find(item => item.url === categoryUrl): null
 	const project = (projectUrl && category && category.projects)? category.projects.find(item => item.url === projectUrl): null
 
 	return (
@@ -28,10 +28,10 @@ export default function ServicesPage({services}) {
 import { getServices, getData } from 'server-side/get-static-data'
 import { _lang } from 'libs/rus'
 
-export async function getStaticProps(){
+export async function getStaticProps({locale}){
 
 	const services = await getServices()
-	const { contacts } = await getData('contacts-page', 'ru')
+	const { contacts } = await getData('contacts-page', { locale })
 
 	return { 
 		props: { services, contacts },
