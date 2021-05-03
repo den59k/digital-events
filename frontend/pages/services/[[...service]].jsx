@@ -31,7 +31,7 @@ import { _lang } from 'libs/rus'
 export async function getStaticProps({locale}){
 
 	const services = await getServices()
-	const { contacts } = await getData('contacts-page', { locale })
+	const { contacts } = await getData('contacts-page', locale )
 
 	return { 
 		props: { services, contacts },
