@@ -15,7 +15,7 @@ export default function Footer ({className, contacts}){
 				{_lang({ ru: "Контакты", en: "Contacts"}, locale)}
 				<a href={`mailto:`+contacts.email} className="a">{contacts.email}</a>
 				<a href={`tel:`+contacts.phone.replace(/[^\d]/g, '')} className="a">{contacts.phone}</a>
-				<div className={styles.copyright}>©2020 Digital Events</div>
+				<div className={styles.copyright}>©2021 Digital Events</div>
 			</div>
 
 			<div className={cn("medium-text", styles.contacts, styles.right)}>
