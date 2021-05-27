@@ -33,6 +33,8 @@ module.exports = function(app, db) {
 }
 
 async function addProject(db, category, _data){
+
+	_data.url = _data.url.trim()
 	const data = toMultiLanguage(_data, multiLanguage, properties)
 
 	try{
@@ -49,8 +51,9 @@ async function addProject(db, category, _data){
 }
 
 async function updateProject (db, category, project, _data){
+	_data.url = _data.url.trim()
 	const data = toDotNotation(toMultiLanguage(_data, multiLanguage, properties), 'projects.$.')
-	console.log(category)
+
 	try{
 		await db.collection('services').updateOne({url: category, "projects.url": project}, {$set: data})
 		return {success: "success"}

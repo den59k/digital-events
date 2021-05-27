@@ -58,8 +58,9 @@ async function getCategories(db){
 
 
 async function addCategory(db, _data){
+	_data.url = _data.url.trim()
 	const data = toMultiLanguage(_data, multiLanguage, properties)
-	
+
 	try{
 		await db.collection('services').insertOne(data)
 		return { success: "success" }
@@ -70,8 +71,8 @@ async function addCategory(db, _data){
 }
 
 async function updateCategory (db, category, _data){
+	_data.url = _data.url.trim()
 	const data = toDotNotation(toMultiLanguage(_data, multiLanguage, properties))
-
 
 	try{
 		await db.collection('services').updateOne({url: category}, {$set: data})

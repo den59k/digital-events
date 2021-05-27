@@ -71,3 +71,25 @@
 
 	img
 		max-width: 70vw
+
+.img
+	margin-bottom: 2em
+	margin-right: 2em
+	max-height: 90vh
+
+.containerYoutube
+	width: 80vw
+	height: 80vw / 16 * 9
+	position: relative
+
+	&>div
+		position: absolute
+		top: 0
+		left: 0
+		right: 0
+		bottom: 0
+		pointer-events: none
+
+	@media(min-width: 1300px)
+		width: 60vw
+		height: 60vw / 16 * 9
